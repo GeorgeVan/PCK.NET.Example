@@ -16,6 +16,7 @@ namespace test_kcp_client {
             if(host == "") {
                 host = "127.0.0.1";
             }
+
             Console.WriteLine("输入起始用户ID:");
             int id = int.Parse(Console.ReadLine());
             Console.WriteLine("输入客户端数量");
@@ -24,9 +25,11 @@ namespace test_kcp_client {
             if(s != "") {
                 c = int.Parse(s);
             }
+
             Console.WriteLine("开始---");
             IRQLog.AppLog = new IRQLog();
             IRQLog.AppLog.Start("output.csv");
+
             UdpLibConfig.HandshakeDelay = 2000;
             UdpLibConfig.HandshakeRetry = 10;
             //客户端，没必要启用内存池
@@ -39,6 +42,8 @@ namespace test_kcp_client {
             else {
                 BytePool = ArrayPool<byte>.System();
             }
+
+
             KCPLib.BufferAlloc = (size) => {
                 return BytePool.Rent(size);
             };

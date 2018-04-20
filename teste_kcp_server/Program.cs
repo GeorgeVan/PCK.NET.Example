@@ -26,9 +26,9 @@ class Program {
         for(int i = 1; i < 10000; i++) {
             server.AddClientKey((uint)i, i);
         }
-        server.Start();
+        server.StartReceive();
         while(true) {
-            server.Update();
+            server.UpdateRepeatedly();
         }
     }
 
